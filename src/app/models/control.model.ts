@@ -3,7 +3,7 @@ import { logging } from "protractor";
 import * as internal from "stream";
 
 export class ControlModel{
-
+    id: number;
     clienteID: number;
     contactoID: number;
     tipoID: number;

@@ -11,45 +11,43 @@
 
 <div class="row animated fadeIn faster">
     <div class="col">
-        <form (ngSubmit)="guardar( f )" 
-                #f="ngForm">
+        <form (ngSubmit)="guardar( f )" #f="ngForm">
+
             <div class="form-group">
-                <label>Codigo</label>
-                <input type="text" class="form-control" disabled="disabled" placeholder="ID" [(ngModel)]="control.codigo" name="codigo" disabled="disabled">
+                <label>ID</label>
+                <input type="text" class="form-control" placeholder="ID" [(ngModel)]="control.id" name="id" disabled="disabled">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
             <div class="form-group">
+                <label>Codigo</label>
+                <input type="text" class="form-control" placeholder="Código" [(ngModel)]="control.codigo" name="codigo" required>
+            </div>
+
+            <div class="form-group">
                 <label>Cliente</label>
-                <input type="text" class="form-control" placeholder="Cliente" [(ngModel)]="control.clienteID"
-                name="clienteID" required>
+                <input type="text" class="form-control" placeholder="Cliente" [(ngModel)]="control.clienteID" name="clienteID" required>
             </div>
 
             <div class="form-group">
                 <label>Contacto</label>
-                <input type="text" class="form-control" placeholder="contacto" [(ngModel)]="control.contactoID"
-                name="contactoID" required>
+                <input type="text" class="form-control" placeholder="contacto" [(ngModel)]="control.contactoID" name="contactoID" required>
             </div>
 
             <div class="form-group">
                 <label>Responsable</label>
-                <input type="text" class="form-control" placeholder="Responsable" [(ngModel)]="control.responsableID"
-                name="responsableID" required>
+                <input type="text" class="form-control" placeholder="Responsable" [(ngModel)]="control.responsableID" name="responsableID" required>
             </div>
 
             <div class="form-group">
                 <label>Tipo</label>
                 <br>
-                <button *ngIf="control.tipoID=== 1"
-                        (click)="control.tipoID=2"
-                    class="btn btn-outline-success w-50" type="button">
+                <button *ngIf="control.tipoID=== 1" (click)="control.tipoID=2" class="btn btn-outline-success w-50" type="button">
                     <i class="fas fa-hands-helping"></i>
                     Incidente
                 </button>
 
-                <button *ngIf="control.tipoID=== 2"
-                        (click)="control.tipoID=1" 
-                    class="btn btn-outline-danger w-50" type="button">
+                <button *ngIf="control.tipoID=== 2" (click)="control.tipoID=1" class="btn btn-outline-danger w-50" type="button">
                     <i class="fas fa-laptop-code"></i>
                     Requerimiento
                 </button>
@@ -58,32 +56,27 @@
 
             <div class="form-group">
                 <label>Descripcion</label>
-                <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="control.descripcion"
-                name="descripcion" required>
+                <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="control.descripcion" name="descripcion" required>
             </div>
 
             <div class="form-group">
                 <label>Prioridad</label>
-                <input type="text" class="form-control" placeholder="Prioridad" [(ngModel)]="control.prioridadID"
-                name="prioridadID" required>
+                <input type="text" class="form-control" placeholder="Prioridad" [(ngModel)]="control.prioridadID" name="prioridadID" required>
             </div>
 
             <div class="form-group">
                 <label>Estado</label>
-                <input type="text" class="form-control" placeholder="Estado" [(ngModel)]="control.estadoID"
-                name="estadoID" required>
+                <input type="text" class="form-control" placeholder="Estado" [(ngModel)]="control.estadoID" name="estadoID" required>
             </div>
 
             <div class="form-group">
                 <label>Horas DEV</label>
-                <input type="text" class="form-control" placeholder="Horas dev" [(ngModel)]="control.horasDEV"
-                name="horasDEV" required>
+                <input type="text" class="form-control" placeholder="Horas dev" [(ngModel)]="control.horasDEV" name="horasDEV" required>
             </div>
 
             <div class="form-group">
                 <label>Horas QAS</label>
-                <input type="text" class="form-control" placeholder="Horas qas" [(ngModel)]="control.horasQAS"
-                name="horasQAS" required>
+                <input type="text" class="form-control" placeholder="Horas qas" [(ngModel)]="control.horasQAS" name="horasQAS" required>
             </div>
 
             <hr>

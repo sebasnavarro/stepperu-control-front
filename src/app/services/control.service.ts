@@ -1,23 +1,35 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ControlModel } from '../models/control.model';
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ControlService {
 
-  private url = 'http://stepperu-control.herokuapp.com/api';
+  private url = 'https://stepperu-control.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 
-  crearControl(control: ControlModel){
+  getCliente(){
+    const headers = new HttpHeaders({
 
-    let headers = new HttpHeaders({
-      'Content-Type':'application/json'
     });
-    return this.http.post(`${this.url}/control.json`, control,{headers});
+
+    this.http.get(`${ this.url }/cliente`,{headers}).subscribe(data => {
+      console.log(data);
+    })
   }
 
+  crearControl(control: ControlModel){
+    return this.http.post(`${ this.url }/control`,control).pipe(
+      map((resp:any) => {
+        control.id = resp.control.id;
+        return control;
+      })
+    );
+
+  }
 
 }

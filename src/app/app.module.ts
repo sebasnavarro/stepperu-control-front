@@ -7,6 +7,7 @@ import { ControlesComponent } from './pages/controles/controles.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ControlService } from './services/control.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ControlService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

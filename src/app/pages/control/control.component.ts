@@ -10,25 +10,20 @@ import { ControlService } from 'src/app/services/control.service';
 })
 export class ControlComponent implements OnInit {
 
-
-
   control = new ControlModel();
-  constructor( private controlService: ControlService) { }
+  constructor( private controlService: ControlService) { 
+    this.controlService.getCliente();
+  }
 
   ngOnInit(): void {
+
   }
 
   guardar(form: NgForm){
-    if (form.invalid){
-      console.log('Formulario no válido');
-      return;
-    }
-    this.controlService.crearControl(this.control).subscribe(resp => {
+    this.controlService.crearControl(this.control)
+    .subscribe(resp => {
       console.log(resp);
     })
-  
-  
   }
 
-  
 }
