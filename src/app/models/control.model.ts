@@ -21,7 +21,7 @@ export class ControlModel{
     codigo: string;
     descripcion: string;
     fecha: string;
-
+    //nombre : string;
     constructor(){
         this.tipoID=1;
     }

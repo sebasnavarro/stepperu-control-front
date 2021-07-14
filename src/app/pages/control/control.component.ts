@@ -15,6 +15,9 @@ export class ControlComponent implements OnInit {
   control = new ControlModel();
   cliente = new ControlModel();
   prioridad = new  ControlModel();
+  responsable = new ControlModel();
+  contacto = new ControlModel();
+  estado = new ControlModel();
   constructor(private controlService: ControlService,
     private route: ActivatedRoute) { }
 
@@ -38,6 +41,23 @@ export class ControlComponent implements OnInit {
     this.controlService.listarPrioridad()
       .subscribe((resp: ControlModel) => {
         this.prioridad = resp;
+        console.log(resp);
+      })
+      this.controlService.listarResponsable()
+      .subscribe((resp: ControlModel) => {idCliente
+        this.responsable = resp;
+        console.log(resp);
+      })
+      const idCliente = this.route.snapshot.paramMap.get("idCliente");
+      this.controlService.listarContacto(this.control.clienteID.toString())
+      .subscribe((resp: ControlModel) => {
+        this.contacto = resp;
+        console.log(resp);
+      })
+      //const tipo = this.route.snapshot.paramMap.get('tipo');
+      this.controlService.listarEstado(this.control.tipoID.toString())
+      .subscribe((resp: ControlModel) => {
+        this.estado = resp;
         console.log(resp);
       })
   }
