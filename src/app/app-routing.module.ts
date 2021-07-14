@@ -8,6 +8,7 @@ import { ControlComponent } from './pages/control/control.component';
 const routes: Routes = [
   { path: 'controles', component: ControlesComponent},
   { path: 'control/:id', component: ControlComponent},
+  { path: 'controles/page/:page', component: ControlesComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'controles'}
 ];
 

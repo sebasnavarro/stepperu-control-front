@@ -29,8 +29,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let control of control; let i= index">
-            <th>{{ i + 1 }}</th>
+        <tr *ngFor="let control of control">
+            <th>{{ control.id }}</th>
             <td>{{ control.codigo }}</td>
             <td>
                 <span *ngIf="control.tipoID=== 1" class="badge bg-success"> Incidente  </span>
@@ -48,13 +48,14 @@
                 <button class="btn btn-info mr-1" [routerLink]="['/control',control.id]">
                     <i class="fa fa-pen"></i>
                 </button>
-                <button class="btn btn-danger" (click)="borrarControl(control, i)">
+                <button class="btn btn-danger" (click)="borrarControl(control)">
                     <i class="fa fa-trash"></i>
                 </button>
             </td>
         </tr>
     </tbody>
 </table>
+<paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>
 
 <div *ngIf="!cargando && control.length ===0" class="alert alert-warning text-center mt-3 animate__animated fadeIn faster">
     <h4 class="alert-heading">No hay registros</h4>

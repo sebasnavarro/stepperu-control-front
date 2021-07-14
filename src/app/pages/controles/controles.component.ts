@@ -40,17 +40,25 @@ export class ControlesComponent implements OnInit {
     });
   }
 
-  borrarControl(control: ControlModel, i:number){
+  borrarControl(control: ControlModel){
     Swal.fire({
       icon: 'question',
       title: '¿Está seguro?',
       text: 'Desea eliminar el '+control.descripcionTipo+': '+control.codigo+' - '+control.descripcion,
       showConfirmButton: true,
       showCancelButton: true
-    }).then( resp => {
-      if(resp.value){
-        this.control.splice(i, 1);
-        this.controlService.borrarContol(control.id).subscribe();
+    }).then( result => {
+      if(result.value){
+        this.controlService.borrarContol(control.id).subscribe(
+          () =>{
+            this.control = this.control.filter(con => con !== control)
+            Swal.fire(
+              'Control Eliminado!',
+               control.descripcionTipo+': '+control.codigo+' - '+control.descripcion + `eliminado con éxito.`,
+              'success'
+            )
+          }
+        );
       }
     });
   }

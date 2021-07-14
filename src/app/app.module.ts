@@ -8,12 +8,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlService } from './services/control.service';
+import { PaginatorComponent } from './paginator/paginator.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ControlComponent,
-    ControlesComponent
+    ControlesComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
