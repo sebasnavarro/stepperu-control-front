@@ -30,12 +30,12 @@ export class ControlService {
     return this.http.put(`${this.url}/control/${control.id}`, control)
   }
 
-  borrarContol(id: string){
-    return this.http.delete(`${this.url}/control/${id}`); 
-  } 
+  borrarContol(id: string) {
+    return this.http.delete(`${this.url}/control/${id}`);
+  }
 
-  obtenerContol(id: string){
-    return this.http.get(`${this.url}/control/${id}`); 
+  obtenerContol(id: string) {
+    return this.http.get(`${this.url}/control/${id}`);
   }
 
 
@@ -45,11 +45,25 @@ export class ControlService {
         (response.content as ControlModel[]);
       }));
   }
-  listarCliente(){
-    return this.http.get(`${this.url}/cliente`); 
+  listarCliente() {
+    return this.http.get(`${this.url}/cliente`);
   }
-  listarPrioridad(){
-    return this.http.get(`${this.url}/prioridad`); 
+  listarPrioridad() {
+    return this.http.get(`${this.url}/prioridad`);
   }
-    
+  listarContacto(cliente: string): Observable<any> {
+    return this.http.get(`${this.url}/contacto/cliente/` + cliente).pipe(
+      tap((response: any) => {
+        (response.content as ControlModel[]);
+      }));
+  }
+  listarResponsable() {
+    return this.http.get(`${this.url}/responsable`);
+  }
+  listarEstado(tipo: string): Observable<any> {
+    return this.http.get(`${this.url}/estado/tipo/` + tipo).pipe(
+      tap((response: any) => {
+        (response.content as ControlModel[]);
+      }));
+  }
 }

@@ -27,21 +27,24 @@
             </div>
             <div class="form-group">
                 <label>Cliente</label>
-                <select name="miselect" [(ngModel)]="control.clienteID" placeholder="Cliente" class="form-control">
+                <select name="miselect" [(ngModel)]="control.clienteID" placeholder="Cliente" class="form-control" name="idCliente">
                     <option [ngValue]="objeto.id" *ngFor="let objeto of cliente" class="option">{{objeto.nombre}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Contacto</label>
-                <input type="text" class="form-control" placeholder="contacto" [(ngModel)]="control.contactoID"
-                    name="contactoID" required>
+                <select name="miselect" [(ngModel)]="control.contactoID" placeholder="Contacto" class="form-control">
+                    <option [ngValue]="objeto.id" *ngFor="let objeto of contacto" class="option">{{objeto.nombres}}</option> 
+                </select>
             </div>
+
 
             <div class="form-group">
                 <label>Responsable</label>
-                <input type="text" class="form-control" placeholder="Responsable" [(ngModel)]="control.responsableID"
-                    name="responsableID" required>
+                <select name="miselect" [(ngModel)]="control.responsableID" placeholder="Responsable" class="form-control">
+                    <option [ngValue]="objeto.id" *ngFor="let objeto of responsable" class="option">{{objeto.responsable}}</option> 
+                </select>
             </div>
 
             <div class="form-group">
@@ -69,15 +72,16 @@
 
             <div class="form-group">
                 <label>Prioridad</label>
-                <select name="miselect" [(ngModel)]="control.prioridadID" placeholder="Cliente" class="form-control">
+                <select name="miselect" [(ngModel)]="control.prioridadID" placeholder="Prioridad" class="form-control">
                     <option [ngValue]="objeto.id" *ngFor="let objeto of prioridad" class="option">{{objeto.descripcion}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Estado</label>
-                <input type="text" class="form-control" placeholder="Estado" [(ngModel)]="control.estadoID"
-                    name="estadoID" required>
+                <select name="miselect" [(ngModel)]="control.estadoID" placeholder="Estado" class="form-control">
+                    <option [ngValue]="objeto.id" *ngFor="let objeto of estado" class="option">{{objeto.descripcion}}</option> 
+                </select>
             </div>
 
             <div class="form-group">
