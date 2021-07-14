@@ -13,26 +13,38 @@ import { ActivatedRoute } from '@angular/router';
 export class ControlComponent implements OnInit {
 
   control = new ControlModel();
+  cliente = new ControlModel();
+  prioridad = new  ControlModel();
   constructor(private controlService: ControlService,
-              private route: ActivatedRoute) {}
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     //Estamos obteniendo el ID del end point http://localhost:4200/control/3
     const id = this.route.snapshot.paramMap.get('id');
     //http://localhost:4200/control/nuevo <- Si no se esta creando recién hace la llamada al api
-    if(id !== 'nuevo'){
+    if (id !== 'nuevo') {
       this.controlService.obtenerContol(id)
-        .subscribe( (resp: ControlModel) => {
+        .subscribe((resp: ControlModel) => {
           this.control = resp;
           this.control.id = id;
           console.log(resp);
         })
     }
+    this.controlService.listarCliente()
+      .subscribe((resp: ControlModel) => {
+        this.cliente =resp;
+        console.log(resp);
+      })
+    this.controlService.listarPrioridad()
+      .subscribe((resp: ControlModel) => {
+        this.prioridad = resp;
+        console.log(resp);
+      })
   }
 
 
   guardar(form: NgForm) {
-    if ( form.invalid ){
+    if (form.invalid) {
       console.log('Formulario no válido');
       return;
     }
@@ -50,15 +62,15 @@ export class ControlComponent implements OnInit {
 
     //Validación para ver si el usuario existe
     if (this.control.id) {
-      peticion =  this.controlService.actualizarControl(this.control);
+      peticion = this.controlService.actualizarControl(this.control);
     } else {
-      peticion =  this.controlService.crearControl(this.control);
+      peticion = this.controlService.crearControl(this.control);
     }
 
-    peticion.subscribe( resp => {
+    peticion.subscribe(resp => {
       Swal.fire({
         icon: 'success',
-        title: this.control.codigo + ' - ' +this.control.descripcion,
+        title: this.control.codigo + ' - ' + this.control.descripcion,
         text: 'Se actualizo correctamente',
       });
     })

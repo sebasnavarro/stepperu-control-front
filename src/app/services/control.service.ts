@@ -45,7 +45,11 @@ export class ControlService {
         (response.content as ControlModel[]);
       }));
   }
-
-
+  listarCliente(){
+    return this.http.get(`${this.url}/cliente`); 
+  }
+  listarPrioridad(){
+    return this.http.get(`${this.url}/prioridad`); 
+  }
     
 }
