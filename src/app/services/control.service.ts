@@ -1,7 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ControlModel } from '../models/control.model';
-import { map } from "rxjs/operators";
+import { map, catchError, tap, delay } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { keyframes } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +14,11 @@ export class ControlService {
 
   constructor(private http: HttpClient) { }
 
-  getCliente(){
-    const headers = new HttpHeaders({
 
-    });
 
-    this.http.get(`${ this.url }/cliente`,{headers}).subscribe(data => {
-      console.log(data);
-    })
-  }
-
-  crearControl(control: ControlModel){
-    return this.http.post(`${ this.url }/control`,control).pipe(
-      map((resp:any) => {
+  crearControl(control: ControlModel) {
+    return this.http.post(`${this.url}/control`, control).pipe(
+      map((resp: any) => {
         control.id = resp.control.id;
         return control;
       })
@@ -32,4 +26,26 @@ export class ControlService {
 
   }
 
+  actualizarControl(control: ControlModel) {
+    return this.http.put(`${this.url}/control/${control.id}`, control)
+  }
+
+  borrarContol(id: string){
+    return this.http.delete(`${this.url}/control/${id}`); 
+  } 
+
+  obtenerContol(id: string){
+    return this.http.get(`${this.url}/control/${id}`); 
+  }
+
+
+  listarControles(page: number): Observable<any> {
+    return this.http.get(`${this.url}/control/page/` + page).pipe(
+      tap((response: any) => {
+        (response.content as ControlModel[]);
+      }));
+  }
+
+
+    
 }
