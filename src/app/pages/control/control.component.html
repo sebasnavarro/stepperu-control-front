@@ -15,49 +15,48 @@
 
             <div class="form-group">
                 <label>ID</label>
-                <input type="text" class="form-control" placeholder="ID" [(ngModel)]="control.id" name="id"
-                    disabled="disabled">
+                <input type="text" class="form-control" placeholder="ID" [(ngModel)]="control.id" name="id" disabled="disabled">
                 <small class="form-text text-muted">Este campo es autogenerado</small>
             </div>
 
             <div class="form-group">
                 <label>Codigo</label>
-                <input type="text" class="form-control" placeholder="Código" [(ngModel)]="control.codigo" name="codigo"
-                    required disabled="disabled">
+                <input [disabled]="id !== 'nuevo'? true : null" type="text" class="form-control" placeholder="Código" [(ngModel)]="control.codigo" name="codigo" required>
             </div>
             <div class="form-group">
                 <label>Cliente</label>
-                <select name="miselect" [(ngModel)]="control.clienteID" placeholder="Cliente" class="form-control" name="idCliente">
-                    <option [ngValue]="objeto.id" *ngFor="let objeto of cliente" class="option">{{objeto.nombre}}</option> 
+                <select name="cliente" [(ngModel)]="control.clienteID" (ngModelChange)="onSelectContacto(control.clienteID)" placeholder="Cliente" class="form-control" name="idCliente">
+                    <option hidden value=null [disabled]="true">Seleccione cliente</option>
+                    <option [ngValue]="cliente.id" *ngFor="let cliente of clientes" class="option">{{cliente.nombre}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Contacto</label>
-                <select name="miselect" [(ngModel)]="control.contactoID" placeholder="Contacto" class="form-control">
-                    <option [ngValue]="objeto.id" *ngFor="let objeto of contacto" class="option">{{objeto.nombres}}</option> 
+                <select name="contacto" [(ngModel)]="control.contactoID" placeholder="Contacto" class="form-control">
+                    <option hidden value=null [disabled]="true">Seleccione contacto</option>
+                    <option [ngValue]="contacto.id" *ngFor="let contacto of contactos" class="option">{{contacto.nombres}}</option> 
                 </select>
             </div>
 
 
             <div class="form-group">
                 <label>Responsable</label>
-                <select name="miselect" [(ngModel)]="control.responsableID" placeholder="Responsable" class="form-control">
-                    <option [ngValue]="objeto.id" *ngFor="let objeto of responsable" class="option">{{objeto.responsable}}</option> 
+                <select name="responsable" [(ngModel)]="control.responsableID" placeholder="Responsable" class="form-control">
+                    <option hidden value=null [disabled]="true">Seleccione responsable</option>
+                    <option [ngValue]="responsable.id" *ngFor="let responsable of responsables" class="option">{{responsable.responsable}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Tipo</label>
                 <br>
-                <button *ngIf="control.tipoID === 1" (click)="control.tipoID=2" class="btn btn-outline-success w-50"
-                    type="button">
+                <button (click)="onSelectEstado(control.tipoID)" *ngIf="control.tipoID === 1" class="btn btn-outline-success w-50" type="button">
                     <i class="fas fa-hands-helping"></i>
                     Incidente
                 </button>
 
-                <button *ngIf="control.tipoID === 2" (click)="control.tipoID=1" class="btn btn-outline-danger w-50"
-                    type="button">
+                <button (click)="onSelectEstado(control.tipoID)" *ngIf="control.tipoID === 2" class="btn btn-outline-danger w-50" type="button">
                     <i class="fas fa-laptop-code"></i>
                     Requerimiento
                 </button>
@@ -66,34 +65,33 @@
 
             <div class="form-group">
                 <label>Descripcion</label>
-                <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="control.descripcion"
-                    name="descripcion" required>
+                <input type="text" class="form-control" placeholder="Descripcion" [(ngModel)]="control.descripcion" name="descripcion" required>
             </div>
 
             <div class="form-group">
                 <label>Prioridad</label>
-                <select name="miselect" [(ngModel)]="control.prioridadID" placeholder="Prioridad" class="form-control">
-                    <option [ngValue]="objeto.id" *ngFor="let objeto of prioridad" class="option">{{objeto.descripcion}}</option> 
+                <select name="prioridad" [(ngModel)]="control.prioridadID" class="form-control">
+                    <option hidden value=null [disabled]="true">Seleccione prioridad</option>
+                    <option [ngValue]="prioridad.id" *ngFor="let prioridad of prioridades" class="option">{{prioridad.descripcion}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Estado</label>
-                <select name="miselect" [(ngModel)]="control.estadoID" placeholder="Estado" class="form-control">
-                    <option [ngValue]="objeto.id" *ngFor="let objeto of estado" class="option">{{objeto.descripcion}}</option> 
+                <select name="estado" [(ngModel)]="control.estadoID" placeholder="Estado" class="form-control">
+                    <option hidden value=null [disabled]="true">Seleccione estado</option>
+                    <option [ngValue]="estado.id" *ngFor="let estado of estados" class="option">{{estado.descripcion}}</option> 
                 </select>
             </div>
 
             <div class="form-group">
                 <label>Horas DEV</label>
-                <input type="text" class="form-control" placeholder="Horas dev" [(ngModel)]="control.horasDEV"
-                    name="horasDEV" required>
+                <input type="text" class="form-control" placeholder="Horas dev" [(ngModel)]="control.horasDEV" name="horasDEV" required>
             </div>
 
             <div class="form-group">
                 <label>Horas QAS</label>
-                <input type="text" class="form-control" placeholder="Horas qas" [(ngModel)]="control.horasQAS"
-                    name="horasQAS" required>
+                <input type="text" class="form-control" placeholder="Horas qas" [(ngModel)]="control.horasQAS" name="horasQAS" required>
             </div>
 
             <hr>

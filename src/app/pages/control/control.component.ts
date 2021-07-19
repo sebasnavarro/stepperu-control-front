@@ -5,63 +5,97 @@ import { ControlService } from 'src/app/services/control.service';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { Cliente, Contacto, Estado, Prioridad, Responsable } from 'src/app/interfaces/interfaces';
+import { PrioridadService } from 'src/app/services/prioridad.service';
+import { ResponsableService } from 'src/app/services/responsable.service';
+import { ContactoService } from 'src/app/services/contacto.service';
+import { EstadoService } from 'src/app/services/estado.service';
+import { on } from 'events';
 
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html'
 })
 export class ControlComponent implements OnInit {
-
   control = new ControlModel();
-  cliente = new ControlModel();
-  prioridad = new  ControlModel();
-  responsable = new ControlModel();
-  contacto = new ControlModel();
-  estado = new ControlModel();
-  constructor(private controlService: ControlService,
+  clientes: Cliente[] = [];
+  prioridades: Prioridad[] = [];
+  responsables: Responsable[] = [];
+  contactos: Contacto[] = [];
+  estados: Estado[] = [];
+  id: string = this.route.snapshot.paramMap.get('id');
+
+  constructor(
+    private controlService: ControlService, 
+    private clienteService: ClienteService, 
+    private prioridadService: PrioridadService, 
+    private responsableService: ResponsableService,
+    private contactoService: ContactoService,
+    private estadoService: EstadoService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     //Estamos obteniendo el ID del end point http://localhost:4200/control/3
-    const id = this.route.snapshot.paramMap.get('id');
     //http://localhost:4200/control/nuevo <- Si no se esta creando recién hace la llamada al api
-    if (id !== 'nuevo') {
-      this.controlService.obtenerContol(id)
+    if (this.id !== 'nuevo') {
+        this.controlService.obtenerContol(this.id)
         .subscribe((resp: ControlModel) => {
           this.control = resp;
-          this.control.id = id;
-          console.log(resp);
+          this.control.id = this.id;
+          this.onSelectContacto(this.control.clienteID);
+          this.listarEstado(this.control.tipoID);
         })
+    }else{
+        this.listarEstado(this.control.tipoID);
     }
-    this.controlService.listarCliente()
-      .subscribe((resp: ControlModel) => {
-        this.cliente =resp;
+
+    this.clienteService.listarClientes()
+      .subscribe(resp => {
+        console.log(resp);
+        this.clientes = resp;
+      })
+
+    this.prioridadService.listarPrioridades()
+      .subscribe(resp => {
+        this.prioridades = resp;
         console.log(resp);
       })
-    this.controlService.listarPrioridad()
-      .subscribe((resp: ControlModel) => {
-        this.prioridad = resp;
-        console.log(resp);
-      })
-      this.controlService.listarResponsable()
-      .subscribe((resp: ControlModel) => {idCliente
-        this.responsable = resp;
-        console.log(resp);
-      })
-      const idCliente = this.route.snapshot.paramMap.get("idCliente");
-      this.controlService.listarContacto(this.control.clienteID.toString())
-      .subscribe((resp: ControlModel) => {
-        this.contacto = resp;
-        console.log(resp);
-      })
-      //const tipo = this.route.snapshot.paramMap.get('tipo');
-      this.controlService.listarEstado(this.control.tipoID.toString())
-      .subscribe((resp: ControlModel) => {
-        this.estado = resp;
-        console.log(resp);
+
+    this.responsableService.listarResponsables()
+      .subscribe(resp => {
+        this.responsables = resp;
       })
   }
 
+  onSelectContacto(id: number): void {
+    this.contactoService.listarContactos(id).
+    subscribe(resp => {
+      this.contactos = resp;
+      console.log('onSelectContacto: ' + resp);
+    })
+  }
+
+  listarEstado(tipo: number): void {
+    this.estadoService.listarEstados(tipo).
+    subscribe(resp => {
+      this.estados = resp;
+      console.log('onSelectCliente: ' + resp);
+    })
+  }
+
+  cambiarTipo(tipo: number): void{
+    if(tipo===1){
+      this.control.tipoID = 2;
+    }else{
+      this.control.tipoID = 1;
+    }
+  }
+
+  onSelectEstado(tipo: number): void {
+    this.cambiarTipo(tipo);
+    this.listarEstado(this.control.tipoID);
+  }
 
   guardar(form: NgForm) {
     if (form.invalid) {

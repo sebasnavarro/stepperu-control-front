@@ -4,7 +4,7 @@ import * as internal from "stream";
 
 export class ControlModel{
     id: string;
-    clienteID: string;
+    clienteID: number;
     nombreCliente: string;
     contactoID: string;
     nombreContacto: string;
@@ -16,14 +16,21 @@ export class ControlModel{
     descripcionPrioridad: string;
     responsableID: string;
     nombreResponsable: string;
-    horasDEV: string;
-    horasQAS: string;
+    horasDEV: number;
+    horasQAS: number;
     codigo: string;
     descripcion: string;
     fecha: string;
     //nombre : string;
     constructor(){
         this.tipoID=1;
+        this.clienteID = null;
+        this.contactoID = null;
+        this.prioridadID = null;
+        this.estadoID = null;
+        this.responsableID = null;
+        this.horasDEV = 0;
+        this.horasQAS = 0;
     }
 
 

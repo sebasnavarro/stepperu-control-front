@@ -1,75 +1,76 @@
 <h1>Lista de control!</h1>
 <hr>
 
-<div class="row">
-    <div class="col text-right">
-        <button routerLink="/control/nuevo" class="btn btn-primary">
-
-            <i class="fa fa-plus"></i>
-            Agregar
-        </button>
+<div class="container">
+    <div class="row">
+        <div class="col text-right">
+            <button routerLink="/control/nuevo" class="btn btn-primary">
+    
+                <i class="fa fa-plus"></i>
+                Agregar
+            </button>
+        </div>
     </div>
-</div>
-
-<table *ngIf="!cargando && control.length >0" class="table table-bordered mt-3 animate__animated animate__fadeIn animate__faster">
-    <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">CÓDIGO</th>
-            <th scope="col">TIPO</th>
-            <th scope="col">DESCRIPCIÓN</th>
-            <th scope="col">ESTADO</th>
-            <th scope="col">CLIENTE</th>
-            <th scope="col">CONTACTO</th>
-            <th scope="col">PRIORIDAD</th>
-            <th scope="col">RESPONSABLE</th>
-            <th scope="col">HORAS DEV</th>
-            <th scope="col">HORAS QAS</th>
-            <th scope="col">ACCIONES</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let control of control">
-            <th>{{ control.id }}</th>
-            <td>{{ control.codigo }}</td>
-            <td>
-                <span *ngIf="control.tipoID=== 1" class="badge bg-success"> Incidente  </span>
-                <span *ngIf="control.tipoID=== 2" class="badge bg-danger"> Requerimiento </span>
-            </td>
-            <td>{{ control.descripcion }}</td>
-            <td>{{ control.descripcionEstado }}</td>
-            <td>{{ control.nombreCliente }}</td>
-            <td>{{ control.nombreContacto }}</td>
-            <td>{{ control.descripcionPrioridad }}</td>
-            <td>{{ control.nombreResponsable }}</td>
-            <td>{{ control.horasDEV }}</td>
-            <td>{{ control.horasQAS }}</td>
-            <td>
-                <button class="btn btn-info mr-1" [routerLink]="['/control',control.id]">
+    <table *ngIf="!cargando && control.length >0" class="table mt-3 animate__animated animate__fadeIn animate__faster">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">CÓDIGO</th>
+                <th scope="col">TIPO</th>
+                <th scope="col">DESCRIPCIÓN</th>
+                <th scope="col">ESTADO</th>
+                <th scope="col">CLIENTE</th>
+                <th scope="col">CONTACTO</th>
+                <th scope="col">PRIORIDAD</th>
+                <th scope="col">RESPONSABLE</th>
+                <th scope="col">HORAS DEV</th>
+                <th scope="col">HORAS QAS</th>
+                <th scope="col">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let control of control">
+                <td data-label="ID">{{ control.id }}</td>
+                <td data-label="CÓDIGO">{{ control.codigo }}</td>
+                <td data-label="TIPO">
+                    <span *ngIf="control.tipoID=== 1" class="badge bg-success"> Incidente  </span>
+                    <span *ngIf="control.tipoID=== 2" class="badge bg-danger"> Requerimiento </span>
+                </td>
+                <td data-label="DESCRIPCIÓN">{{ control.descripcion }}</td>
+                <td data-label="ESTADO">{{ control.descripcionEstado }}</td>
+                <td data-label="CLIENTE">{{ control.nombreCliente }}</td>
+                <td data-label="CONTACTO">{{ control.nombreContacto }}</td>
+                <td data-label="PRIORIDAD">{{ control.descripcionPrioridad }}</td>
+                <td data-label="RESPONSABLE">{{ control.nombreResponsable }}</td>
+                <td data-label="HORAS DEV">{{ control.horasDEV }}</td>
+                <td data-label="HORAS QAS">{{ control.horasQAS }}</td>
+                <td data-label="ACCIONES">
+                    <button class="btn btn-outline-primary" [routerLink]="['/control',control.id]">
                     <i class="fa fa-pen"></i>
                 </button>
-                <button class="btn btn-danger" (click)="borrarControl(control)">
+                    <button class="btn btn-outline-danger" (click)="borrarControl(control)">
                     <i class="fa fa-trash"></i>
                 </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <paginator-nav *ngIf="paginador" [paginador]="paginador"></paginator-nav>
 
-<div *ngIf="!cargando && control.length ===0" class="alert alert-warning text-center mt-3 animate__animated fadeIn faster">
-    <h4 class="alert-heading">No hay registros</h4>
-    <p>
-        <i class="fa fa-exclamation fa-2x"></i>
-    </p>
-</div>
+    <div *ngIf="!cargando && control.length ===0" class="alert alert-warning text-center mt-3 animate__animated fadeIn faster">
+        <h4 class="alert-heading">No hay registros</h4>
+        <p>
+            <i class="fa fa-exclamation fa-2x"></i>
+        </p>
+    </div>
 
-<div *ngIf="cargando" class="alert alert-info text-center mt-3 animate__animated fadeIn faster">
-    <h4 class="alert-heading">Cargando</h4>
-    <p>
-        <i class="fa fa-sync-alt fa-spin fa-2x"></i>
-    </p>
-    <p class="mb-0">
-        Espere porfavor
-    </p>
+    <div *ngIf="cargando" class="alert alert-info text-center mt-3 animate__animated fadeIn faster">
+        <h4 class="alert-heading">Cargando</h4>
+        <p>
+            <i class="fa fa-sync-alt fa-spin fa-2x"></i>
+        </p>
+        <p class="mb-0">
+            Espere porfavor
+        </p>
+    </div>
 </div>
