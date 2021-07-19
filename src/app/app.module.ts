@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ControlService } from './services/control.service';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PaginatorComponent } from './paginator/paginator.component';
     AppComponent,
     ControlComponent,
     ControlesComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
