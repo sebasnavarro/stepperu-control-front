@@ -2,13 +2,20 @@
     box-sizing: border-box;
 }
 
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #204862;
+}
+
 .form-register {
     width: 95%;
-    max-width: 950px;
+    max-width: 800px;
     margin: auto;
     background: rgb(255, 255, 255);
     border-radius: 7px;
     border: 1px solid rgb(60, 116, 238);
+    margin-bottom: 30px;
 }
 
 .form__titulo {
@@ -34,6 +41,37 @@ contenedor-inputs {
     justify-content: space-between;
 }
 
-button {
-    margin-right: 50px;
+select {
+    font-size: 12px;
+}
+
+.two-fields {
+    width: 100%;
+}
+
+.two-fields .input-group {
+    width: 100%;
+}
+
+.two-fields input {
+    width: 45% !important;
+    margin: 5px;
+}
+
+.two-fields button {
+    width: 49% !important;
+    margin: 5px;
+}
+
+.two-fields select {
+    width: 45% !important;
+    margin: 5px;
+}
+
+.margin-left {
+    margin-left: 80px !important;
+}
+
+.solo {
+    margin: 5px;
 }

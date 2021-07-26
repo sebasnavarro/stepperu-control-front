@@ -46,18 +46,4 @@ export class ControlService {
       }));
   }
 
-  listarContacto(clienteID: number): Observable<any> {
-    return this.http.get(`${environment.url}/contacto/cliente/${clienteID}`).pipe(
-      tap((response: any) => {
-        (response.content as ControlModel[]);
-        console.log(response);
-      }));
-  }
-
-  listarEstado(tipo: number): Observable<any> {
-    return this.http.get(`${environment.url}/estado/tipo/` + tipo).pipe(
-      tap((response: any) => {
-        (response.content as ControlModel[]);
-      }));
-  }
 }

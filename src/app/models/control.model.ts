@@ -29,8 +29,6 @@ export class ControlModel{
         this.prioridadID = null;
         this.estadoID = null;
         this.responsableID = null;
-        this.horasDEV = 0;
-        this.horasQAS = 0;
     }
 
 

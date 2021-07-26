@@ -9,7 +9,8 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-controles',
-  templateUrl: './controles.component.html'
+  templateUrl: './controles.component.html',
+  styleUrls: ['./controles.component.css']
 })
 export class ControlesComponent implements OnInit {
   control: ControlModel[];

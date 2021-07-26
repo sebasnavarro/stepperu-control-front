@@ -24,8 +24,7 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/table-responsive.css",
-                            "src/form-responsive.css"
+                            "src/styles.css"
                         ],
                         "scripts": []
                     },

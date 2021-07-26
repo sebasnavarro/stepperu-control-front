@@ -15,7 +15,8 @@ import { on } from 'events';
 
 @Component({
   selector: 'app-control',
-  templateUrl: './control.component.html'
+  templateUrl: './control.component.html',
+  styleUrls: ['./control.component.css']
 })
 export class ControlComponent implements OnInit {
   control = new ControlModel();
@@ -43,6 +44,8 @@ export class ControlComponent implements OnInit {
         .subscribe((resp: ControlModel) => {
           this.control = resp;
           this.control.id = this.id;
+          if(this.control.horasDEV === undefined){ this.control.horasDEV=0;}
+          if(this.control.horasQAS === undefined){ this.control.horasQAS=0;}
           this.onSelectContacto(this.control.clienteID);
           this.listarEstado(this.control.tipoID);
         })
